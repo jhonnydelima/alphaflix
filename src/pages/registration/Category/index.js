@@ -55,20 +55,20 @@ function CategoryRegistration() {
   // ======================================== //
 
   useEffect(() => {
-      const URL = window.location.hostname.includes('localhost')
-        ? 'http://localhost:8080/categories'
-        : 'https://alphaflix.herokuapp.com/categories';
-      fetch(URL)
-        .then(async (serverResponse) => {
-          if (serverResponse.ok) {
-            const response = await serverResponse.json();
-            setCategories(response);
-            return;
-          }
-          throw new Error('Não foi possível pegar os dados');
-        });
-    }
-  }, []);
+    const URL = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categories'
+      : 'https://alphaflix.herokuapp.com/categories';
+    fetch(URL)
+      .then(async (serverResponse) => {
+        if (serverResponse.ok) {
+          const response = await serverResponse.json();
+          setCategories([
+            ...response,
+          ]);
+        }
+        throw new Error('Não foi possível pegar os dados');
+      });
+  });
 
   return (
     <PageDefault>
