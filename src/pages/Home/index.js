@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Menu from '../../components/Menu'
+import Menu from '../../components/Menu';
 import initialData from '../../data/dados_iniciais.json';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
@@ -15,38 +15,38 @@ function Home() {
     <AppWrapper>
       <Menu />
 
-      <BannerMain 
+      <BannerMain
         videoTitle={initialData.categorias[0].videos[0].titulo}
         url={initialData.categorias[0].videos[0].url}
-        videoDescription={"O que é Front-end? Trabalhando na área, os termos HTML, CSS e JavaScript fazem parte da rotina dos desenvolvedores. Mas o que eles fazem, afinal? Descubra com a Vanessa!"}
+        videoDescription="O que é Front-end? Trabalhando na área, os termos HTML, CSS e JavaScript fazem parte da rotina dos desenvolvedores. Mas o que eles fazem, afinal? Descubra com a Vanessa!"
       />
 
-      <Carousel 
+      <Carousel
         ignoreFirstVideo
         category={initialData.categorias[0]}
       />
 
-      <Carousel 
+      <Carousel
         ignoreFirstVideo
         category={initialData.categorias[1]}
       />
 
-      <Carousel 
+      <Carousel
         ignoreFirstVideo
         category={initialData.categorias[2]}
       />
 
-      <Carousel 
+      <Carousel
         ignoreFirstVideo
         category={initialData.categorias[3]}
       />
 
-      <Carousel 
+      <Carousel
         ignoreFirstVideo
         category={initialData.categorias[4]}
       />
 
-      <Carousel 
+      <Carousel
         ignoreFirstVideo
         category={initialData.categorias[5]}
       />
