@@ -1,8 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
-import Button from '../../../components/Button';
+
+const SubmitButton = styled.button`
+  background: var(--grayDark);
+  border: 1px solid var(--white);
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: var(--white);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  padding: 16px 24px;
+  outline: none;
+  text-decoration: none;
+  transition: opacity .3s;
+
+  &:hover,
+  &:focus {
+    opacity: .5;
+  }
+`;
 
 function CategoryRegistration() {
   const initialValues = {
@@ -34,7 +56,9 @@ function CategoryRegistration() {
 
   useEffect(() => {
     if (window.location.href.includes('localhost')) {
-      const URL = 'http://localhost:8080/categories';
+      const URL = window.location.hostname.includes('localhost')
+        ? 'http://localhost:8080/categories'
+        : 'https://alphaflix.herokuapp.com/categories';
       fetch(URL)
         .then(async (serverResponse) => {
           if (serverResponse.ok) {
@@ -89,9 +113,9 @@ function CategoryRegistration() {
           onChange={handleChange}
         />
 
-        <Button>
+        <SubmitButton>
           Cadastrar
-        </Button>
+        </SubmitButton>
       </form>
 
       <ul>

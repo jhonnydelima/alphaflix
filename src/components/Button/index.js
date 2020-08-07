@@ -3,7 +3,9 @@ import styled from 'styled-components';
 const Button = styled.button`
     border: 1px solid var(--white);
     border-radius: 5px;
+    box-sizing: border-box;
     color: var(--white);
+    display: inline-block;
     font-size: 16px;
     font-weight: bold;
     padding: 16px 24px;
