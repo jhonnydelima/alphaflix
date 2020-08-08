@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import useForm from '../../../hooks/useForm';
+import categoriesRepository from '../../../repositories/categories';
 
 const SubmitButton = styled.button`
   background: var(--grayDark);
@@ -41,20 +42,12 @@ function CategoryRegistration() {
   // ======================================== //
 
   useEffect(() => {
-    const URL = window.location.hostname.includes('localhost')
-      ? 'http://localhost:8080/categories'
-      : 'https://alphaflix.herokuapp.com/categories';
-    fetch(URL)
-      .then(async (serverResponse) => {
-        if (serverResponse.ok) {
-          const response = await serverResponse.json();
-          setCategories([
-            ...response,
-          ]);
-        }
-        throw new Error('Não foi possível pegar os dados');
+    categoriesRepository
+      .getAll()
+      .then((categoriesFromServer) => {
+        setCategories(categoriesFromServer);
       });
-  });
+  }, []);
 
   return (
     <PageDefault>
@@ -102,6 +95,12 @@ function CategoryRegistration() {
           Cadastrar
         </SubmitButton>
       </form>
+
+      {categories.length === 0 && (
+        <div>
+          Loading...
+        </div>
+      )}
 
       <ul>
         {categories.map((category) => (
