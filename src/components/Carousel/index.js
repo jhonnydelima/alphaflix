@@ -7,22 +7,23 @@ function Carousel({
   ignoreFirstVideo,
   category,
 }) {
-  const categoryTitle = category.titulo;
-  const categoryColor = category.cor;
+  const categoryName = category.name;
+  const categoryColor = category.color;
   const categoryExtraLink = category.link_extra;
-  const videos = category.videos;
+  const { videos } = category;
   return (
     <VideoCardGroupContainer>
-      {categoryTitle && (
+      {categoryName && (
         <>
           <Title style={{ backgroundColor: categoryColor || 'red' }}>
-            {categoryTitle}
+            {categoryName}
           </Title>
-          {categoryExtraLink && 
+          {categoryExtraLink
+            && (
             <ExtraLink href={categoryExtraLink.url} target="_blank">
-              {categoryExtraLink.text}  
+              {categoryExtraLink.text}
             </ExtraLink>
-          }
+            )}
         </>
       )}
       <Slider>

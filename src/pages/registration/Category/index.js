@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
+import useForm from '../../../hooks/useForm';
 
 const SubmitButton = styled.button`
   background: var(--grayDark);
@@ -33,24 +34,9 @@ function CategoryRegistration() {
     color: '',
   };
 
+  const { handleChange, values, clearForm } = useForm(initialValues);
+
   const [categories, setCategories] = useState([]);
-  const [values, setValues] = useState(initialValues);
-
-  function setValue(key, value) {
-    // key: name, description, color, blablabla, asdf, whatever
-    setValues({
-      ...values,
-      [key]: value, // name/description/color: 'value'
-    });
-  }
-
-  function handleChange(eventInfo) {
-    // const { getAttribute, value } = eventInfo.target;
-    setValue(
-      eventInfo.target.getAttribute('name'),
-      eventInfo.target.value,
-    );
-  }
 
   // ======================================== //
 
@@ -84,7 +70,7 @@ function CategoryRegistration() {
           values,
         ]);
 
-        setValues(initialValues);
+        clearForm();
       }}
       >
 
